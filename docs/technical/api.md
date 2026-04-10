@@ -1,0 +1,3 @@
+# API
+
+Endpoint /analisar-publicacao

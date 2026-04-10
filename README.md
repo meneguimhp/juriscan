@@ -1,2 +1,3 @@
-# juriscan
-JurisScan — Automação inteligente de fluxos jurídicos
+# Juriscan
+
+Leitura inteligente de publicações jurídicas com geração automática de prazos.

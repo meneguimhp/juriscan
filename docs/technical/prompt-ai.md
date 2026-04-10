@@ -1,0 +1,3 @@
+# Prompt IA
+
+Prompt estruturado.
