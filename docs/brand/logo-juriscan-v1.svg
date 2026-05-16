@@ -1,0 +1,12 @@
+<svg width="430" height="96" viewBox="0 0 430 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="juriscanBlueV1" x1="16" y1="20" x2="78" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20C7EB"/>
+      <stop offset="1" stop-color="#149FCF"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 56V30C18 27.2 20.2 25 23 25H39C41.8 25 44 27.2 44 30V63L23.7 73.9C20.4 75.7 18 73.6 18 70V56Z" fill="url(#juriscanBlueV1)"/>
+  <path d="M48 63V18C48 15.2 50.2 13 53 13H69C71.8 13 74 15.2 74 18V52.3C74 54.2 73 55.9 71.4 56.8L48 69.6V63Z" fill="url(#juriscanBlueV1)"/>
+  <path d="M16 62L33.2 79.2C34.9 80.9 37.6 81 39.4 79.3L80 40.5" stroke="#18AEDD" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="95" y="61" font-family="Manrope, Segoe UI, Arial, sans-serif" font-weight="800" font-size="56" fill="#081A2D">Juriscan</text>
+</svg>

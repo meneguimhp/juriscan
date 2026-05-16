@@ -1,0 +1,18 @@
+<svg width="430" height="96" viewBox="0 0 430 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shieldFill" x1="18" y1="14" x2="78" y2="82" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#27CBEC"/>
+      <stop offset="1" stop-color="#138FC6"/>
+    </linearGradient>
+    <linearGradient id="glyphFill" x1="30" y1="27" x2="63" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FCFF"/>
+      <stop offset="1" stop-color="#E4F6FF"/>
+    </linearGradient>
+  </defs>
+  <path d="M48 10L79 21V44C79 61 67.7 76 48 84C28.3 76 17 61 17 44V21L48 10Z" fill="url(#shieldFill)"/>
+  <path d="M48 14.5L74 23.8V43.5C74 58.2 64 71.1 48 78C32 71.1 22 58.2 22 43.5V23.8L48 14.5Z" stroke="#0A5F91" stroke-width="2.5" stroke-opacity="0.55"/>
+  <path d="M32 28.5C32 26.6 33.6 25 35.5 25H44V53.5L36 61.5C34.2 63.3 31 62 31 59.5V33.5L32 28.5Z" fill="url(#glyphFill)"/>
+  <path d="M49 22.5C49 20.6 50.6 19 52.5 19H60.5C62.4 19 64 20.6 64 22.5V52.5C64 54 63.2 55.3 61.9 56.1L49 64V22.5Z" fill="url(#glyphFill)"/>
+  <path d="M31.5 52.5L43 63.5C44.5 65 46.8 65 48.3 63.6L65 48.5" stroke="#DDF3FF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="60" font-family="Manrope, Segoe UI, Arial, sans-serif" font-weight="800" font-size="55" fill="#081A2D">Juriscan</text>
+</svg>

@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-tests:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.x"
+          cache-dependency-path: juriscan-backend/go.mod
+
+      - name: Go test
+        working-directory: juriscan-backend
+        run: |
+          go test ./...
+
+  frontend-tests:
+    name: Frontend tests and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: juriscan-frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: juriscan-frontend
+        run: npm ci
+
+      - name: Unit tests
+        working-directory: juriscan-frontend
+        run: npm run test
+
+      - name: Build
+        working-directory: juriscan-frontend
+        run: npm run build

@@ -1,0 +1,42 @@
+<svg width="920" height="260" viewBox="0 0 920 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconBackDark" x1="36" y1="80" x2="168" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D8BE8" />
+      <stop offset="1" stop-color="#0C4FA4" />
+    </linearGradient>
+    <linearGradient id="ringDark" x1="44" y1="42" x2="174" y2="174" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FCFF" />
+      <stop offset="0.55" stop-color="#9CB7D7" />
+      <stop offset="1" stop-color="#F7FCFF" />
+    </linearGradient>
+    <linearGradient id="handleDark" x1="14" y1="188" x2="96" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38B9FA" />
+      <stop offset="1" stop-color="#0B74CF" />
+    </linearGradient>
+    <linearGradient id="scanWordDark" x1="498" y1="72" x2="754" y2="152" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7EDBFF" />
+      <stop offset="1" stop-color="#00A7F2" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(-26 -20) scale(1.25)">
+    <path d="M52 78H146L166 156H72L52 78Z" fill="url(#iconBackDark)" />
+    <circle cx="102" cy="116" r="61" fill="#071124" stroke="url(#ringDark)" stroke-width="12" />
+    <circle cx="102" cy="116" r="49" stroke="#2A4E80" stroke-width="2.4" />
+    <path d="M65 160L91 145L109 173L81 189C74 193 65 191 61 184L58 178C54 172 57 164 65 160Z" fill="url(#handleDark)" />
+    <path d="M144 160L168 186" stroke="url(#ringDark)" stroke-width="11" stroke-linecap="round" />
+
+    <path d="M72 112H132" stroke="#BFD9F4" stroke-width="4" stroke-linecap="round" />
+    <path d="M102 86V112" stroke="#BFD9F4" stroke-width="4" stroke-linecap="round" />
+    <path d="M70 96L102 86L134 96" stroke="#BFD9F4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M84 112C84 119 78 125 71 125C64 125 58 119 58 112" stroke="#9CC3E8" stroke-width="4" stroke-linecap="round" />
+    <path d="M146 112C146 119 140 125 133 125C126 125 120 119 120 112" stroke="#9CC3E8" stroke-width="4" stroke-linecap="round" />
+    <path d="M107 102L126 114L117 133L98 121L107 102Z" fill="#31B6F8" stroke="#8AD7FF" stroke-width="2" />
+  </g>
+
+  <text x="220" y="168" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="122" font-weight="800" fill="#F7FBFF">JURI</text>
+  <text x="474" y="168" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="122" font-weight="800" fill="url(#scanWordDark)">SCAN</text>
+  <line x1="226" y1="208" x2="278" y2="208" stroke="#D7E7FA" stroke-width="3.2" />
+  <text x="294" y="218" font-family="Manrope, Segoe UI, Arial, sans-serif" font-size="41" font-weight="600" letter-spacing="4.2" fill="#DDEBFC">INTELIGÊNCIA JURÍDICA</text>
+  <line x1="852" y1="208" x2="902" y2="208" stroke="#D7E7FA" stroke-width="3.2" />
+</svg>

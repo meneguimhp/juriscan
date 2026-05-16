@@ -1,0 +1,46 @@
+# exemplo de variaveis para primeira subida
+region                    = "us-east-1"
+project                   = "juriscan"
+environment               = "prod"
+
+# rede existente (preencher com VPC/subnet publica ja usada pelo SynPlace)
+existing_vpc_id           = "vpc-xxxxxxxxxxxxxxxxx"
+existing_public_subnet_id = "subnet-xxxxxxxxxxxxxxxxx"
+
+# DNS (habilite quando quiser publicar o dominio)
+root_domain               = "synplace.com.br"
+app_subdomain             = "juriscan"
+enable_dns_record         = false
+
+# custo baixo
+instance_type             = "t3.micro"
+root_volume_size          = 20
+
+# acesso operacional
+key_name                  = ""
+ssh_allowed_cidrs         = []
+
+# ip estavel para nao perder endpoint
+enable_eip                = true
+
+# economia
+enable_daily_stop         = true
+daily_stop_schedule_expression = "cron(0 22 * * ? *)"
+daily_stop_timezone       = "America/Sao_Paulo"
+
+# start criado mas desabilitado
+create_daily_start_schedule    = true
+enable_daily_start        = false
+daily_start_schedule_expression = "cron(0 8 * * ? *)"
+daily_start_timezone      = "America/Sao_Paulo"
+
+# budget
+enable_budget             = false
+monthly_budget_limit_usd  = 15
+budget_alert_emails       = []
+
+# deploy da aplicacao na EC2 via Terraform/SSM
+deploy_app                   = true
+bootstrap_admin_emails       = ["demo@juriscan.local", "seu-email@exemplo.com"]
+login_token_echo             = true
+reset_mysql_volume_on_deploy = false

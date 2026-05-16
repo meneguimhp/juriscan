@@ -1,0 +1,41 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build artifacts
+bin/
+dist/
+tmp/
+*.exe
+*.db
+
+# Frontend
+node_modules/
+playwright-report/
+test-results/
+.playwright/
+juriscan-frontend/responsive-*.png
+juriscan-frontend/responsive-local-*.png
+juriscan-frontend/responsive-public-*.png
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Terraform local state/config
+**/.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+tfplan
+infra/.deploy/
