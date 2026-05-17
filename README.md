@@ -1,127 +1,168 @@
-﻿# Juriscan
+# Juriscan
 
-Leitura inteligente de publicações juridicas com geração assistida de prazos.
+> Intelligent workflow automation for legal operations.
 
-## Estado atual
-- Sprint 1 iniciado.
-- Backend base implementado em `juriscan-backend/` (auth OTP, RBAC, auditoria e CRM inicial).
-- Frontend MVP implementado em `juriscan-frontend/` (login OTP, dashboard comercial, pipeline e edição de leads).
-- CI validando backend + frontend em `.github/workflows/ci.yml`.
+![Go](https://img.shields.io/badge/Go-1.25-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=111827)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active%20Development-F59E0B?style=for-the-badge)
 
-## Estrutura
-- `juriscan-backend/`: API Go do MVP.
-- `juriscan-frontend/`: interface React do MVP.
-- `docs/product/`: SDD, backlog e roadmap.
-- `docs/technical/`: arquitetura, API e plano de validação.
-- `infra/`: Terraform da infraestrutura AWS isolada do Juriscan.
+## Overview
 
-## Documentacao principal
-- SDD MVP: `docs/product/sdd-mvp.md`
-- Backlog técnico 90 dias: `docs/product/backlog-90d.md`
-- Kanban inicial 90 dias: `docs/product/kanban-90d.md`
-- Roadmap executivo: `docs/product/roadmap.md`
-- Arquitetura técnica: `docs/technical/architecture.md`
-- Identidade visual (logo): `docs/brand/README.md`
+Juriscan is a legal workflow automation platform designed to support operational productivity, structured intake, lead handling, publication analysis, deadline routines and assisted review flows.
 
-## Rodar backend local
+The repository is organized as a full-stack product workspace with a Go backend, a React frontend, technical documentation and infrastructure automation. Public documentation intentionally stays at a high level to avoid exposing client data, proprietary logic or sensitive operational details.
+
+## High-Level Architecture
+
+```txt
+Users / Operators
+       |
+       v
+React Frontend
+       |
+       v
+Go API Backend
+       |
+       +--> Identity, OTP, RBAC and audit trails
+       +--> Legal workflow modules
+       +--> WhatsApp integration layer
+       +--> Assisted analysis and validation flows
+       |
+       v
+Persistence / Infrastructure
+```
+
+The internal workflow rules and automation strategies are intentionally not documented in detail.
+
+## Tech Stack
+
+- **Backend:** Go
+- **Frontend:** React + Vite
+- **Persistence:** SQLite for local development, MySQL-compatible deployment path
+- **Testing:** Go tests, Vitest and Playwright
+- **CI:** GitHub Actions
+- **Infrastructure:** Terraform-based deployment assets
+- **Runtime:** Designed for cloud-hosted environments
+
+## Core Capabilities
+
+- OTP-based authentication flow
+- Role-based access control foundations
+- Audit-oriented backend behavior
+- Legal publication intake and assisted analysis
+- Deadline and validation workflows
+- Lead and commercial pipeline routines
+- WhatsApp integration layer with mock and provider-based modes
+- AI-assisted review surfaces with human validation
+- Frontend MVP for operational workflows
+
+## Repository Structure
+
+```txt
+.
+├── .github/
+│   └── workflows/          # CI pipeline
+├── deploy/                 # Local deployment helpers
+├── docs/
+│   ├── brand/              # Brand assets
+│   ├── product/            # Product planning and roadmap
+│   └── technical/          # Architecture and API documentation
+├── infra/                  # Terraform and infrastructure assets
+├── juriscan-backend/       # Go API backend
+└── juriscan-frontend/      # React frontend
+```
+
+## Running Locally
+
+### Backend
+
 ```bash
 cd juriscan-backend
+go mod download
 go run ./cmd/juriscan
 ```
 
-## Rodar frontend local
+### Frontend
+
 ```bash
 cd juriscan-frontend
 npm install
 npm run dev
 ```
 
-## Usuarios e login (MVP)
-- Nao existe auto-cadastro publico.
-- Login OTP so funciona para usuario cadastrado e `active`.
-- No piloto, a tela avisa quando o e-mail nao esta cadastrado e mostra o codigo de teste quando `LOGIN_TOKEN_ECHO=true`.
-- Login ficticio recomendado para demonstracao: `demo@juriscan.local`.
-- A primeira tela apos login e a Entrada do Dia: filas de atendimento, leads, publicacoes, prazos e validacoes.
-- Menu do piloto: `Entrada do Dia`, `WhatsApp`, `Leads`, `Publicacoes`, `Prazos`, `Conferencia IA` e `Usuarios`.
-- Follow-up nao aparece como modulo principal; fica como retorno agendado dentro da rotina de Leads.
-- Gestao de usuarios via API admin:
-  - `GET /v1/admin/users`
-  - `POST /v1/admin/users`
-  - `PATCH /v1/admin/users/{id}`
-- Variaveis `*_EMAILS` servem apenas para bootstrap inicial.
+## Tests And Build
 
-## Fluxo recomendado para demonstracao
-1. Entrar com `demo@juriscan.local`.
-2. Abrir `WhatsApp` e registrar uma mensagem recebida; marcar `Gerar lead automaticamente` quando a conversa deve virar oportunidade.
-3. Voltar para `Entrada do Dia` para ver a fila comercial e o SLA.
-4. Em `Leads`, rodar triagem IA e aplicar/ajustar a sugestao humana.
-5. Em `Publicacoes`, cadastrar o texto do despacho/publicacao e executar a analise assistida.
-6. Validar o prazo sugerido antes de criar tarefa operacional em `Prazos`.
-7. Usar `Conferencia IA` para conferir rastreabilidade das analises de IA.
+### Backend tests
 
-## WhatsApp (MVP + oficial Meta Cloud)
-- Local: `WHATSAPP_PROVIDER=mock`
-  - simulacao autenticada via `POST /v1/whatsapp/simulate`
-- Oficial: `WHATSAPP_PROVIDER=meta_cloud`
-  - exige:
-    - `WHATSAPP_META_API_VERSION`
-    - `WHATSAPP_META_PHONE_NUMBER_ID`
-    - `WHATSAPP_META_ACCESS_TOKEN`
-    - `WHATSAPP_META_VERIFY_TOKEN`
-  - webhook de verificacao:
-    - `GET /v1/whatsapp/webhook`
-  - webhook de mensagens:
-    - `POST /v1/whatsapp/webhook`
-  - envio outbound:
-    - `POST /v1/whatsapp/messages/send`
+```bash
+cd juriscan-backend
+go test ./...
+```
 
-## Checklist de deploy (bloco pronto)
-- Infra MVP:
-  - tudo versionado e provisionado via Terraform em `infra/`
-  - usar VPC/subnet publica existente do SynPlace, sem alterar recursos do SynPlace
-  - 1 EC2 exclusiva do Juriscan (`t3.micro` inicialmente; subir para `t3.small` se faltar memoria), Amazon Linux 2023
-  - Security Group proprio do Juriscan
-  - Elastic IP proprio do Juriscan
-  - DNS externo reaproveitando dominio do SynPlace, sem alterar registros existentes
-  - criar `juriscan.synplace.com.br` apontando para o Elastic IP do Juriscan
-  - Caddy na borda (`80/443`)
-  - MySQL 8 local, sem exposicao publica
-  - sem backup obrigatorio do MySQL no piloto inicial
-  - auto-stop da EC2 via EventBridge Scheduler habilitado (ex.: 22:00 America/Sao_Paulo)
-  - auto-start da EC2 via EventBridge Scheduler criado/documentado, mas desativado por padrao
-- Backend:
-  - `APP_ENV=production`
-  - `HTTP_ADDR=127.0.0.1:8080`
-  - `DATABASE_DRIVER=mysql`
-  - `DATABASE_URL=juriscan:<senha>@tcp(127.0.0.1:3306)/juriscan?parseTime=true`
-  - `LOGIN_TOKEN_ECHO=false`
-  - `ALLOWED_ORIGINS=https://juriscan.synplace.com.br`
-  - `WHATSAPP_PROVIDER=meta_cloud` (se integracao oficial ativa)
-  - variaveis Meta Cloud preenchidas
-- Frontend:
-  - build com `npm run build`
-  - publicar `dist/` em `/opt/juriscan/frontend` na EC2
-  - servir pelo Caddy no mesmo host
-- Validacao minima:
-  - `GET /healthz`
-  - login OTP de usuario ativo
-  - recebimento/simulacao de mensagem WhatsApp
-  - envio de mensagem outbound (`/v1/whatsapp/messages/send`)
+### Frontend tests
 
-## Infra AWS atual
-- Endpoint publico: `https://juriscan.synplace.com.br`
-- DNS: `juriscan.synplace.com.br -> 18.205.92.243`
-- EC2: `i-09c3a3ef8076fe5c4` (`t3.micro`)
-- VPC/subnet reaproveitadas: `vpc-0c1d54b3667114bcc` / `subnet-0d266f94dd6868b97`
-- Artefatos de deploy: `juriscan-prod-artifacts-343150994013`
-- Auto-stop habilitado; auto-start criado e desabilitado.
+```bash
+cd juriscan-frontend
+npm run test
+```
 
-A infraestrutura e a aplicação estão aplicadas. Validações realizadas:
-- `GET https://juriscan.synplace.com.br/healthz`
-- `POST https://juriscan.synplace.com.br/v1/identity/auth/login`
-- `terraform plan -detailed-exitcode` sem mudanças pendentes.
+### Frontend build
 
-Observação de piloto: `LOGIN_TOKEN_ECHO=true` está ativo para teste sem provedor de e-mail. Desligar antes de uso real com dados sensíveis.
-Usuários iniciais do piloto são definidos em `bootstrap_admin_emails` no Terraform; não há auto-cadastro público.
+```bash
+cd juriscan-frontend
+npm run build
+```
 
+## Scalability And Automation
 
+Juriscan is evolving around a few engineering principles:
+
+- Clear separation between frontend, backend, infrastructure and documentation
+- Workflow-oriented backend modules
+- Human-in-the-loop validation for assisted analysis
+- Provider abstraction for external integrations
+- Infrastructure-as-code for reproducible environments
+- CI validation for backend and frontend changes
+
+## Roadmap
+
+- Continue hardening authentication, authorization and audit flows
+- Expand workflow orchestration across legal routines
+- Improve assisted analysis reliability and traceability
+- Strengthen observability and operational metrics
+- Expand automated test coverage
+- Refine deployment automation and environment configuration
+
+## Project Status
+
+Juriscan is in active development.  
+The repository reflects an evolving MVP and technical foundation for legal workflow automation.
+
+## Security And Confidentiality
+
+This project must not expose:
+
+- Client data
+- Legal documents
+- Production credentials
+- Infrastructure identifiers
+- Internal business rules
+- Proprietary automation logic
+- Sensitive AI prompts or decision strategies
+
+Some materials may be subject to confidentiality restrictions. Public documentation should remain portfolio-safe and intentionally high level.
+
+## Contributing
+
+Contributions are currently limited to authorized collaborators.  
+Before submitting changes, align on scope, security impact and architecture boundaries.
+
+## License
+
+License information should be defined by the repository owner.
+
+---
+
+Built with Go, React and an automation-first approach for modern legal operations.
